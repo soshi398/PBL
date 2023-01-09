@@ -3,9 +3,9 @@ import processing.serial.*;
 
 Serial MyPort;
 
-Client myClient0;
+Client myClient3;
 Client myClient1;
-Client myClient2;
+Client myClient5;
 Server myServer0;
 
 byte keyval;
@@ -22,9 +22,9 @@ void setup(){
 size(400,200);
 PFont font = createFont("BIZ UDゴシック",16,true);
 textFont(font);
-myClient0 = new Client(this,"localhost",3333);//
+myClient3 = new Client(this,"localhost",3333);//
 myClient1 = new Client(this, "localhost",1111);
-myClient2 = new Client(this,"localhost", 5555);
+myClient5 = new Client(this,"localhost", 5555);
 State = 0;
 Message = " ";
 int i;
@@ -33,7 +33,7 @@ println(Serial.list()[i]);
 }
 println("are available");
 
-MyPort = new Serial(this, Serial.list()[i - 1], 115200);
+//MyPort = new Serial(this, Serial.list()[i - 1], 115200);
 }
 
 int []ADIntVal = new int [2];
@@ -44,7 +44,7 @@ text("クライアントA",0,0);
 
 text(Message ,20,20);
 text(Message1 , 50,90);
-MyPort.write(2);//マイコンに送るデータ
+//MyPort.write(2);//マイコンに送るデータ
 
 
 text("CH0:" + nf(ADIntVal[0],4) + ", 実数値=" + nf(ADRealVal[0],1,3) + "[V]", 40,40);
@@ -64,7 +64,7 @@ Message = "サーバと接続完了" + str(myBuffer[0]);
 State = 1;
 break;
 case 1:
-if(c == myClient2){
+if(c == myClient5){
 for(int i=0;i<NumBytes;i++){
 byte keyval0;
 keyval0 = myBuffer[i];
@@ -76,11 +76,53 @@ data_all0=data_all0+str(char(keyval0));
 Message = "サーバから受信"+ data_all0;
 data_all0 = " ";
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 break;
 }
 
 c.clear();
 }//サーバー側からデータ受信
+
+
+void keyTyped()
+{
+        byte sendData;
+     
+  
+      
+      delay(10);
+      sendData = byte(key);
+      
+      
+      String dataa=str(sendData);
+     myClient1.write("500");
+      delay(10);
+      myClient3.write(dataa);
+
+ 
+
+
+     
+      
+}
+
+/*
 
 void serialEvent (Serial RecvPort){
 RecvByteBuff[numRecvByte]=(byte)RecvPort.read();
@@ -104,3 +146,4 @@ println(sendData0);
 
 
 }//サーバー側にデータ送信
+*/

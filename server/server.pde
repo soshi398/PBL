@@ -212,15 +212,20 @@ void clientEvent(Client RecvClient) {
     hitokanti=0;
 
     if (RecvClient == myClient[2]) {
+     
 
       for (int i=0; i<NumBytes; i++) {
         byte keyval2;
         keyval2=myBuffer[i];
+        
         data_all2=data_all1+str(char(keyval2));
         hitokanti = Integer.parseInt(data_all2);
       }
+    }else{
+      break;
     }
-
+    
+    
     if (hitokanti == 1) {
       State = 3;
       Message2[2]="人を感知したので明るさ調整を行います";
@@ -244,6 +249,8 @@ void clientEvent(Client RecvClient) {
 
         data_all0= data_all0+str(char(keyval0));
       }
+    }else{
+      break;
     }
 
     uti=Integer.parseInt(data_all0);
@@ -274,6 +281,8 @@ void clientEvent(Client RecvClient) {
       }
 
       Message2[1]="光センサ（外）から"+data_all1+"を受信";
+    }else{
+      break;
     }
 
     soto = Integer.parseInt(data_all1);
@@ -299,6 +308,8 @@ void clientEvent(Client RecvClient) {
       Message2[3]="LEDを暗くする指示を送信";
      
     }
+    
+    
     State =2;
 
 

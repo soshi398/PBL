@@ -13,11 +13,11 @@ void setup(){
   PFont font = createFont("BIZ UDゴシック",16,true);
   textFont(font);
   
-    myClient1 = new Client(this,"localhost",1111);
+    //myClient1 = new Client(this,"localhost",1111);
     myClient2 = new Client(this,"localhost",2222);
-    myClient3 = new Client(this,"localhost",3333);
+    //myClient3 = new Client(this,"localhost",3333);
     myClient4 = new Client(this,"localhost",4444);
-    myClient5 = new Client(this,"localhost",5555);
+    //myClient5 = new Client(this,"localhost",5555);
     
     
   
@@ -59,7 +59,7 @@ void clientEvent(Client c){
 void keyTyped()
 {
       byte sendData;
-           myClient1.write("500");
+          // myClient1.write("500");
       delay(10);
       myClient2.write("80");
       delay(10);
@@ -67,7 +67,7 @@ void keyTyped()
       Message=str(key);
       
       String dataa=str(sendData);
-     myClient3.write(dataa);
+     //myClient3.write(dataa);
       delay(10);
 
  
@@ -75,7 +75,7 @@ void keyTyped()
 
       myClient4.write(dataa);
       delay(10);
-      myClient5.write(dataa);
+      //myClient5.write(dataa);
       delay(10);      
       
 }
