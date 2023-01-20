@@ -59,7 +59,7 @@ void setup() {
   PortNum[4] = 5555;//モーター
   for (int i=0; i<MAX_CLIENT; i++) {
     myServer[i] = new Server(this, PortNum[i]);
-    myClient[i] = new Client(this, "localhost", PortNum[i]);
+    myClient[i] = new Client(this, "192.168.9.2", PortNum[i]);
   }
 
   for (int i = 0; i < MAX_CLIENT; i++) {
@@ -252,8 +252,10 @@ void clientEvent(Client RecvClient) {
     }else{
       break;
     }
+    uti=0;
 
     uti=Integer.parseInt(data_all0);
+    data_all0="";
 
     if (uti >0) {
       Message2[0] = "光センサ（内）から" + uti +"を受信";
@@ -281,17 +283,19 @@ void clientEvent(Client RecvClient) {
       }
 
       Message2[1]="光センサ（外）から"+data_all1+"を受信";
+      
     }else{
       break;
     }
-
+    soto=0;
     soto = Integer.parseInt(data_all1);
+    data_all1="";
 
     if (soto > uti) {
-      myServer[4].write("1111");
+      myServer[4].write("1");
       Message2[4]="カーテンをあける指示を送信";
     } else {
-      myServer[4].write("0000");
+      myServer[4].write("0");
       Message2[4] = "カーテンを閉める指示を送信";
     }
 
@@ -308,6 +312,8 @@ void clientEvent(Client RecvClient) {
       Message2[3]="LEDを暗くする指示を送信";
      
     }
+    
+    
     
     
     State =2;
