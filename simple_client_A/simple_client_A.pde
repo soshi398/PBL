@@ -14,10 +14,10 @@ void setup(){
   textFont(font);
   
     //myClient1 = new Client(this,"localhost",1111);
-    myClient2 = new Client(this,"localhost",2222);
+    myClient2 = new Client(this,"localhost",3333);
     //myClient3 = new Client(this,"localhost",3333);
     myClient4 = new Client(this,"localhost",4444);
-    //myClient5 = new Client(this,"localhost",5555);
+    myClient5 = new Client(this,"localhost",5555);
     
     
   
@@ -75,7 +75,7 @@ void keyTyped()
 
       myClient4.write(dataa);
       delay(10);
-      //myClient5.write(dataa);
+      myClient5.write(dataa);
       delay(10);      
       
 }

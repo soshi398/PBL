@@ -16,7 +16,6 @@ int []startTime = new int[2];
 String setteijikoku="";
 String MessageO="";
 int hour, minute;
-int katen = 3;
 
 final int iti_x = 400;
 final int iti_y = 500;
@@ -60,7 +59,7 @@ void setup() {
   PortNum[4] = 5555;//モーター
   for (int i=0; i<MAX_CLIENT; i++) {
     myServer[i] = new Server(this, PortNum[i]);
-    myClient[i] = new Client(this,/* "192.168.9.2" */"localhost", PortNum[i]);
+    myClient[i] = new Client(this, "192.168.9.4", PortNum[i]);
   }
 
   for (int i = 0; i < MAX_CLIENT; i++) {
@@ -293,25 +292,11 @@ void clientEvent(Client RecvClient) {
     data_all1="";
 
     if (soto > uti) {
-      if (katen != 1){
-      myServer[4].write("1");
+      myServer[4].write("1111");
       Message2[4]="カーテンをあける指示を送信";
-      katen =1;
-    
-  }else{
-      Message2[4]="カーテンはそのまま";
-      myServer[4].write("2");
-    }
-    
     } else {
-      if(katen != 0){
-      myServer[4].write("0");
+      myServer[4].write("0000");
       Message2[4] = "カーテンを閉める指示を送信";
-    katen =0; 
-    }else{
-      Message2[4]="カーテンはそのまま";
-      myServer[4].write("2");
-    }
     }
 
 
@@ -319,11 +304,11 @@ void clientEvent(Client RecvClient) {
     if (lightset_result == 9999) {
       Message2[3]="明るさを設定してください";
     } else  if (lightset_result > uti) {
-      myServer[3].write("1");
+      myServer[3].write("1111");
       Message2[3]="LEDを明るくする指示を送信";
      
     } else {
-      myServer[3].write("0");
+      myServer[3].write("0000");
       Message2[3]="LEDを暗くする指示を送信";
      
     }
